@@ -10,7 +10,7 @@ Trapezoid is a simple web framework for service workers. It features:
 
 simply reference our CDN file on rawgit in your service worker:
 ```javascript
-importScripts(https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js)
+importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js")
 ```
 
 #Hello World
@@ -18,7 +18,7 @@ importScripts(https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js)
 This service worker will return hello world next time you visit the base url of service worker scope:
 
 ```javascript
-importScripts("trapezoid.js")
+importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js")
 
 var app = trapezoid();
 
