@@ -1,11 +1,11 @@
-function trapzoid(){
+function trapezoid(){
   var ret = {
     processors: {
       GET:[]
     },
     process: function(event){
       var method = event.request.method;
-      var path = event.request.url.substr(self.location.origin.length);
+      var path = event.request.url.substr(self.location.href.lastIndexOf("/"));
 
       var processors = ret.processors[method];
 
