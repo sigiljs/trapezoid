@@ -18,20 +18,15 @@ importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js")
 This service worker will return hello world next time you visit the base url of service worker scope:
 
 ```javascript
-importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js")
+importScripts("trapezoid.js")
 
 var app = trapezoid();
 
 app.get("/",function(req,res){
-  res.send("Hello World")
+  res.send("Replacing what you see at base url when offline.")
 })
 
-self.addEventListener('install', function(event,options) {
-  console.log("Installing Service Worker");
-});
+app.cache("/test.json")
 
-self.addEventListener('fetch', function(event) {
-  app.process(event);
-});
-
+app.run("helloworld-cache-v1");
 ```
