@@ -50,7 +50,20 @@ function trapezoid(){
               }
             }
             if(processor){
-              return ret.doProcessor(processor,event.request);
+              if(processor.offline){
+                  return new Promise(function(resolve){
+                    fetch(event.request).then(function(response){
+                        resolve(response);
+                    }).catch(function(){
+                      ret.doProcessor(processor,event.request).then(function(response){
+                        resolve(response);
+                      });
+                    })
+                  })
+              }
+              else {
+                  return ret.doProcessor(processor,event.request);
+              }
             }
             else {
               return fetch(event.request);
@@ -66,12 +79,15 @@ function trapezoid(){
         fn:fn
       })
     },
-    cache: function(path,fn){
-      ret.urlsToCache.push(path);
+    offline: function(path,fn){
       ret.processors.GET.push({
         path: path,
-        fn:fn
+        fn:fn,
+        offline:true
       })
+    },
+    cache: function(path,fn){
+      ret.urlsToCache.push(path);
     },
     run: function(cacheName){
       self.addEventListener('install', function(event) {
