@@ -46,7 +46,7 @@ app.precache("/testA.json");
 // Or declare many things to precache
 app.precache(["/testB.json","testB.json"]);
 
-// Create a handler for when offline only
+// Create a fallback handler for when offline only
 app.offline("/offline.json",function(req,res){
   res.type('application/json');
   res.send("{'online':false}");
