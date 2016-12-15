@@ -4,7 +4,8 @@
 
 #Trapezoid
 Trapezoid is a simple web framework for service workers. It features:
-* easily intercepting fetches
+* easily defining caches
+* easily intercepting fetches and passing custom values
 
 #Install
 
