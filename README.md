@@ -34,7 +34,7 @@ sw.js
 importScripts("trapezoid.js")
 var app = trapezoid();
 
-//Create a custom get handler
+//Create a custom GET handler
 app.get("/",function(req,res){
   res.send("you made it to root! ")
 })
