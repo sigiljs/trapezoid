@@ -1,10 +1,11 @@
 function trapezoid(){
   var ret = {
-    processors: {
-      GET:[],
-      POST:[],
-      PUT:[],
-      DELETE:[]
+    processors: {,
+      cache:[],
+      GET:[]
+    },
+    cache: function(event){
+      
     },
     process: function(event){
       var method = event.request.method;
@@ -40,20 +41,9 @@ function trapezoid(){
         fn:fn
       })
     },
-    post: function(path,fn){
-      ret.processors.POST.push({
-        path: path,
-        fn:fn
-      })
-    },
-    put: function(path,fn){
-      ret.processors.PUT.push({
-        path: path,
-        fn:fn
-      })
-    },
-    delete: function(path,fn){
-      ret.processors.DELETE.push({
+    cacheOrGet: function(path,fn){
+      ret.cache.push(path);
+      ret.processors.GET.push({
         path: path,
         fn:fn
       })
