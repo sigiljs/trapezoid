@@ -5,7 +5,7 @@
 #Trapezoid
 Trapezoid is a simple web framework for service workers. It features:
 * define precached items
-* intercept fetches and passing custom responses
+* intercept GET fetches and pass custom responses
 * create custom responses for when offline only
 
 #Install
@@ -43,7 +43,7 @@ app.get("/",function(req,res){
 //Declare something to precache
 app.precache("/testA.json");
 
-//Declare many things to precache
+//Or declare many things to precache
 app.precache(["/testB.json","testB.json"]);
 
 //Create a handler for when offline only
