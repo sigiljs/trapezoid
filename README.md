@@ -24,7 +24,7 @@ importScripts("trapezoid.js")
 var app = trapezoid();
 
 app.get("/",function(req,res){
-  res.send("Replacing what you see at base url when offline.")
+  res.send("Replacing what you see at base url.")
 })
 
 app.cache("/test.json")
