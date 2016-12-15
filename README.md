@@ -40,7 +40,7 @@ app.get("/",function(req,res){
   res.send("you made it to root! ")
 })
 
-//Declare something to pre-cache
+//Declare something to precache
 app.precache("/test.json");
 
 //Create a handler for when offline only
