@@ -21,6 +21,9 @@ function trapezoid(){
         };
 
         var res = {
+          type: function(mime){
+            init['Content-Type'] = mime
+          },
           send: function(text){
             var response = new Response(text, init);
             resolve(response);
