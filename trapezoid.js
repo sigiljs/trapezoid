@@ -8,7 +8,6 @@ function trapezoid(){
       event.waitUntil(
         caches.open(cacheName)
           .then(function(cache) {
-            console.log("cacheing "+ret.urlsToCache);
             return cache.addAll(ret.urlsToCache);
           })
       );
@@ -86,8 +85,13 @@ function trapezoid(){
         offline:true
       })
     },
-    precache: function(path,fn){
-      ret.urlsToCache.push(path);
+    precache: function(path){
+      if(Array.isArray(path)){
+          ret.urlsToCache = ret.urlsToCache.concat(path);
+      }
+      else {
+          ret.urlsToCache.push(path);
+      }
     },
     run: function(cacheName){
       self.addEventListener('install', function(event) {
