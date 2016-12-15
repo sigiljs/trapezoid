@@ -1,7 +1,7 @@
 function trapezoid(){
   var ret = {
+    urlsToCache:[],
     processors: {
-      urlsToCache:[],
       GET:[]
     },
     processCache: function(event,cacheName){
