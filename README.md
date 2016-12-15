@@ -28,5 +28,5 @@ app.get("/",function(req,res){
 
 app.cache("/test.json")
 
-app.run("helloworld-cache-v1");
+app.run("helloworld-v1");
 ```
