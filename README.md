@@ -15,9 +15,6 @@ importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.js")
 ```
 
 #Hello World
-
-This service worker will return hello world next time you visit the base url of service worker scope:
-
 app.js
 ```javascript
 if ('serviceWorker' in navigator) {
