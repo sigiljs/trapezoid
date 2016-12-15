@@ -41,7 +41,10 @@ app.get("/",function(req,res){
 })
 
 //Declare something to precache
-app.precache("/test.json");
+app.precache("/testA.json");
+
+//Declare many things to precache
+app.precache(["/testB.json","testB.json"]);
 
 //Create a handler for when offline only
 app.offline("/offline.json",function(req,res){
