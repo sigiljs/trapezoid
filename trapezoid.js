@@ -6,39 +6,59 @@ function trapezoid(){
     },
     processCache: function(event,cacheName){
       event.waitUntil(
-        caches.open(CACHE_NAME)
+        caches.open(cacheName)
           .then(function(cache) {
+            console.log("cacheing "+ret.urlsToCache);
             return cache.addAll(ret.urlsToCache);
           })
       );
     },
+    doProcessor: function(processor,request){
+      return new Promise(function(resolve){
+        var init = {
+          status: 200,
+          statusText: "OK",
+          headers: {'Content-Type': 'text/html'}
+        };
+
+        var res = {
+          send: function(text){
+            var response = new Response(text, init);
+            resolve(response);
+          }
+        }
+        processor.fn(request,res);
+      })
+    },
     processFetch: function(event){
-      var method = event.request.method;
-      var path = event.request.url.substr(self.location.href.lastIndexOf("/"));
+      event.respondWith(
+        caches.match(event.request)
+          .then(function(response) {
+            // Cache hit - return response
+            if (response) {
+              return response;
+            }
+            var method = event.request.method;
+            var path = event.request.url.substr(self.location.href.lastIndexOf("/"));
 
-      var processors = ret.processors[method];
-
-      for(var i = 0 ; i < processors.length; i++){
-        var processor = processors[i];
-        if( processor.path === path ){
-          var init = {
-            status: 200,
-            statusText: "OK",
-            headers: {'Content-Type': 'text/html'}
-          };
-
-          var res = {
-            send: function(text){
-              var response = new Response(text, init);
-              event.respondWith(
-                response
-              );
+            var processors = ret.processors[method];
+            var processor = null;
+            for(var i = 0 ; i < processors.length; i++){
+              if( processors[i].path === path ){
+                processor = processors[i];
+                break;
+              }
+            }
+            if(processor){
+              return ret.doProcessor(processor,event.request);
+            }
+            else {
+              return fetch(event.request);
             }
           }
-          processor.fn(event.request,res)
-          return;
-        }
-      }
+        )
+      );
+
     },
     get: function(path,fn){
       ret.processors.GET.push({
@@ -48,12 +68,16 @@ function trapezoid(){
     },
     cache: function(path,fn){
       ret.urlsToCache.push(path);
+      ret.processors.GET.push({
+        path: path,
+        fn:fn
+      })
     },
-    run: function(context,cacheName){
-      context.addEventListener('install', function(event) {
+    run: function(cacheName){
+      self.addEventListener('install', function(event) {
         ret.processCache(event,cacheName);
       });
-      context.addEventListener('fetch', function(event) {
+      self.addEventListener('fetch', function(event) {
         ret.processFetch(event);
       });
     }
