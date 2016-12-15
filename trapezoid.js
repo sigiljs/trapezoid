@@ -86,7 +86,7 @@ function trapezoid(){
         offline:true
       })
     },
-    cache: function(path,fn){
+    precache: function(path,fn){
       ret.urlsToCache.push(path);
     },
     run: function(cacheName){
