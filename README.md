@@ -31,26 +31,26 @@ if ('serviceWorker' in navigator) {
 
 sw.js
 ```javascript
-//Get things started
+// Get things started
 importScripts("trapezoid.js")
 var app = trapezoid();
 
-//Create a custom GET handler
+// Create a custom GET handler
 app.get("/",function(req,res){
   res.send("you made it to root! ")
 })
 
-//Declare something to precache
+// Declare something to precache
 app.precache("/testA.json");
 
-//Or declare many things to precache
+// Or declare many things to precache
 app.precache(["/testB.json","testB.json"]);
 
-//Create a handler for when offline only
+// Create a handler for when offline only
 app.offline("/offline.json",function(req,res){
   res.send("offline");
 })
 
-//Give it a unique name for cacheing
+// Give it a unique name for cacheing
 app.run("helloworld-v1");
 ```
