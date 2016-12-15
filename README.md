@@ -37,7 +37,7 @@ var app = trapezoid();
 
 // Create a custom GET handler
 app.get("/",function(req,res){
-  res.send("you made it to root! ")
+  res.send("I replaced what you see at base url.")
 })
 
 // Declare something to precache
