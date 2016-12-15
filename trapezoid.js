@@ -1,13 +1,18 @@
 function trapezoid(){
   var ret = {
-    processors: {,
-      cache:[],
+    processors: {
+      urlsToCache:[],
       GET:[]
     },
-    cache: function(event){
-      
+    processCache: function(event,cacheName){
+      event.waitUntil(
+        caches.open(CACHE_NAME)
+          .then(function(cache) {
+            return cache.addAll(ret.urlsToCache);
+          })
+      );
     },
-    process: function(event){
+    processFetch: function(event){
       var method = event.request.method;
       var path = event.request.url.substr(self.location.href.lastIndexOf("/"));
 
@@ -41,12 +46,16 @@ function trapezoid(){
         fn:fn
       })
     },
-    cacheOrGet: function(path,fn){
-      ret.cache.push(path);
-      ret.processors.GET.push({
-        path: path,
-        fn:fn
-      })
+    cache: function(path,fn){
+      ret.urlsToCache.push(path);
+    },
+    run: function(context,cacheName){
+      context.addEventListener('install', function(event) {
+        ret.processCache(event,cacheName);
+      });
+      context.addEventListener('fetch', function(event) {
+        ret.processFetch(event);
+      });
     }
   }
   return ret;
