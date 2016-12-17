@@ -5,7 +5,7 @@
   "main": "src/trapezoid.js",
   "scripts": {
     "lint": "eslint --fix src",
-    "build": "uglifyjs src/trapezoid.js > trapezoid.min.js"
+    "build": "uglifyjs --compress --mangle -- src/trapezoid.js > trapezoid.min.js"
   },
   "repository": {
     "type": "git",

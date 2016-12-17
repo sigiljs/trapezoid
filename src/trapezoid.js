@@ -101,5 +101,3 @@ function trapezoid() {
   };
   return ret;
 }
-
-module.exports = trapezoid;
