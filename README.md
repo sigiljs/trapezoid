@@ -9,11 +9,10 @@ Trapezoid is a simple web framework for service workers. It features:
 * create custom responses for when offline only
 
 #Install
-install locally using npm
+install locally using npm and refer locally from your service worker
 ```bash
 npm install trapezoid
 ```
-and refer locally from your service worker
 ```javascript
 importScripts("node_modules/trapezoid/trapezoid.min.js");
 ```
