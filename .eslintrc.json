@@ -1,0 +1,12 @@
+{
+    "extends": "eslint-config-airbnb-es5",
+    "plugins": [
+        "import"
+    ],
+    "globals": {
+      "Promise": true
+    },
+    "rules":{
+      "func-names":0
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "trapezoid",
+  "version": "0.0.2",
+  "description": "A web framework for service workers",
+  "main": "src/trapezoid.js",
+  "scripts": {
+    "lint": "eslint --fix src",
+    "build": "uglifyjs src/trapezoid.js > trapezoid.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/richardanaya/trapezoid.git"
+  },
+  "author": "Richard Anaya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/richardanaya/trapezoid/issues"
+  },
+  "homepage": "https://github.com/richardanaya/trapezoid#readme",
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-config-airbnb-es5": "^1.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.8.0",
+    "uglify-js": "^2.7.5"
+  }
+}
