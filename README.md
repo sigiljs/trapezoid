@@ -9,12 +9,18 @@ Trapezoid is a simple web framework for service workers. It features:
 * create custom responses for when offline only
 
 #Install
-
-simply reference our CDN file on rawgit in your service worker:
-```javascript
-importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.min.js")
+install locally using npm
+```bash
+npm install trapezoid
 ```
-
+and refer locally from your service worker
+```javascript
+importScripts("node_modules/trapezoid/trapezoid.min.js");
+```
+or reference CDN file on rawgit in your service worker:
+```javascript
+importScripts("https://cdn.rawgit.com/sigiljs/trapezoid/master/trapezoid.min.js");
+```
 #Hello World
 app.js
 ```javascript
